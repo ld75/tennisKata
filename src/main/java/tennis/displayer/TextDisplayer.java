@@ -2,10 +2,10 @@ package tennis.displayer;
 
 import tennis.History;
 
-public class TextAfficheur implements Displayer {
+public class TextDisplayer implements Displayer {
     private final History history;
 
-    public TextAfficheur(History history) {
+    public TextDisplayer(History history) {
         this.history = history;
     }
 

@@ -1,7 +1,7 @@
 package tennis;
 
 import tennis.displayer.Displayer;
-import tennis.displayer.TextAfficheur;
+import tennis.displayer.TextDisplayer;
 import tennis.winnerRules.IRule;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class Game {
     public void initialize()
     {
         history=new History();
-        displayer = new TextAfficheur(history);
+        displayer = new TextDisplayer(history);
         scores.add("15");
         scores.add("30");
         scores.add("40");

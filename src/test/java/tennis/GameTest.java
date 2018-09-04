@@ -3,7 +3,7 @@ package tennis;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import tennis.displayer.Displayer;
-import tennis.displayer.TextAfficheur;
+import tennis.displayer.TextDisplayer;
 import tennis.winnerRules.IRule;
 import tennis.winnerRules.PlayerOneWins;
 
@@ -58,7 +58,7 @@ public class GameTest {
         ajouteHistory(history,"0","15");
         ajouteHistory(history,"15","15");
         ajouteHistory(history,"15","30");
-        Displayer displayer = new TextAfficheur(history);
+        Displayer displayer = new TextDisplayer(history);
         displayer.display();
     }
 
