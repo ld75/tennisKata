@@ -1,9 +1,12 @@
 package tennis;
 
+import tennis.displayer.Displayer;
+import tennis.displayer.TextAfficheur;
+import tennis.winnerRules.IRule;
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
 
 public class Game {
 
@@ -12,7 +15,7 @@ public class Game {
     protected final Joueur p1;
     public History history;
     private IRule rule;
-    private Afficheur afficheur;
+    private Displayer displayer;
 
     public Game(Joueur joueur1, Joueur joueur2) {
         this.p1=joueur1;
@@ -27,7 +30,7 @@ public class Game {
     public void initialize()
     {
         history=new History();
-        afficheur= new TextAfficheur(history);
+        displayer = new TextAfficheur(history);
         scores.add("15");
         scores.add("30");
         scores.add("40");
@@ -38,12 +41,12 @@ public class Game {
         if(p1.score.equals("Winner")|| p2.score.equals("Winner"))
         {
             fillHistory();
-            afficheur.affiche();
+            displayer.display();
         }
         else {
             rule.apply();
             fillHistory();
-            afficheur.affiche();
+            displayer.display();
         }
     }
 

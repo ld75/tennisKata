@@ -1,8 +1,11 @@
-package tennis;
+package tennis.winnerRules;
+
+import tennis.Game;
+import tennis.Joueur;
 
 import java.security.SecureRandom;
 
-public class RandomPlayerWins extends AbstractRule{
+public class RandomPlayerWins extends AbstractRule {
 
 
 

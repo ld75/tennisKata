@@ -1,6 +1,8 @@
-package tennis;
+package tennis.winnerRules;
 
-public class payerTwoWins extends AbstractRule{
+import tennis.Game;
+
+public class payerTwoWins extends AbstractRule {
 
 
     @Override

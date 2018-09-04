@@ -1,4 +1,7 @@
-package tennis;
+package tennis.winnerRules;
+
+import tennis.Joueur;
+import tennis.winnerRules.IRule;
 
 public abstract class AbstractRule implements IRule {
     public static final String WINNER = "Winner";

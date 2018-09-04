@@ -1,8 +1,8 @@
-package tennis;
+package tennis.winnerRules;
 
-import java.util.Set;
+import tennis.Game;
 
-public class PlayerOneWins extends AbstractRule{
+public class PlayerOneWins extends AbstractRule {
 
 
     @Override

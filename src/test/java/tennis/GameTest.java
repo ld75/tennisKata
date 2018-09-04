@@ -2,6 +2,10 @@ package tennis;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import tennis.displayer.Displayer;
+import tennis.displayer.TextAfficheur;
+import tennis.winnerRules.IRule;
+import tennis.winnerRules.PlayerOneWins;
 
 import java.util.Hashtable;
 
@@ -54,8 +58,8 @@ public class GameTest {
         ajouteHistory(history,"0","15");
         ajouteHistory(history,"15","15");
         ajouteHistory(history,"15","30");
-        Afficheur afficheur = new TextAfficheur(history);
-        afficheur.affiche();
+        Displayer displayer = new TextAfficheur(history);
+        displayer.display();
     }
 
     private void ajouteHistory(History history, String s1, String s2) {
