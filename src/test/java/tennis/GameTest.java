@@ -7,25 +7,35 @@ import tennis.displayer.ScoreData;
 import tennis.displayer.TextDisplayer;
 import tennis.winnerRules.IRule;
 import tennis.winnerRules.PlayerOneWins;
+import tennis.winnerRules.PlayerTwoWins;
 import tennis.winnerRules.RandomPlayerWins;
 
 import java.util.Hashtable;
 
 
 public class GameTest {
+    //final test RandomPlay
+    @Test
+    public void randomRules_ResultAreDisplayed()
+    {
+        Game game = initializeTest(new RandomPlayerWins());
+        game.playAMatch();
+    }
+
+
     // Sprint1 UserStory 1:-----------------
     @Test
     public void ifPlayRun_ThenOnePlayerWins()
     {
         Game game = initializeTest(new PlayerOneWins());
         Assertions.assertEquals("0",game.p1.score);
-        game.play();
+        game.playOneBall();
         Assertions.assertEquals("15",game.p1.score);
-        game.play();
+        game.playOneBall();
         Assertions.assertEquals("30",game.p1.score);
-        game.play();
+        game.playOneBall();
         Assertions.assertEquals("40",game.p1.score);
-        game.play();
+        game.playOneBall();
         Assertions.assertEquals("0",game.p1.score);
         Assertions.assertEquals("0",game.p2.score);
     }
@@ -47,7 +57,7 @@ public class GameTest {
         int iteration = 0;
         do
         {
-            game.play();
+            game.playOneBall();
             iteration++;
             Assertions.assertEquals(iteration,game.history.scores.size());
         } while(!game.p1.score.equals("0"));
@@ -73,9 +83,9 @@ public class GameTest {
     public void gameEnds_DisplayHistory()
     {
         Game game = initializeTest(new PlayerOneWins());
-        game.play();
+        game.playOneBall();
         game.p1.score="Winner";
-        game.play();
+        game.playOneBall();
         // look at console
     }
 
@@ -86,7 +96,7 @@ public class GameTest {
         Game game = initializeTest(new PlayerOneWins());
         game.p1.score="30";
         game.p2.score="40";
-        game.play();
+        game.playOneBall();
         Assertions.assertEquals("DEUCE",game.p1.score);
         Assertions.assertEquals("DEUCE",game.p2.score);
     }
@@ -96,7 +106,7 @@ public class GameTest {
         Game game = initializeTest(new PlayerOneWins());
         game.p1.score="DEUCE";
         game.p2.score="DEUCE";
-        game.play();
+        game.playOneBall();
         Assertions.assertEquals("ADV",game.p1.score);
         Assertions.assertEquals("DEUCE",game.p2.score);
     }
@@ -106,7 +116,7 @@ public class GameTest {
         Game game = initializeTest(new PlayerOneWins());
         game.p1.score="ADV";
         game.p2.score="DEUCE";
-        game.play();
+        game.playOneBall();
         Assertions.assertEquals("0",game.p1.score);
         Assertions.assertEquals("0",game.p2.score);
     }
@@ -116,7 +126,7 @@ public class GameTest {
         Game game = initializeTest(new PlayerOneWins());
         game.p1.score="DEUCE";
         game.p2.score="ADV";
-        game.play();
+        game.playOneBall();
         Assertions.assertEquals("DEUCE",game.p1.score);
         Assertions.assertEquals("DEUCE",game.p2.score);
     }
@@ -127,7 +137,7 @@ public class GameTest {
         Game game = initializeTest(new PlayerOneWins());
         do
         {
-            game.play();
+            game.playOneBall();
 
         } while (!game.p1.score.equals("0"));
 
@@ -142,7 +152,7 @@ public class GameTest {
         game.p2.setScore=4;
         game.p1.score="40";
         game.p2.score="30";
-        game.play();
+        game.playOneBall();
         Assertions.assertTrue(game.p1.setWinned.get(0)==true);
         Assertions.assertTrue(game.p2.setWinned.get(0)==false);
         Assertions.assertTrue(game.p1.setScore==6);
@@ -156,13 +166,13 @@ public class GameTest {
         game.p2.setScore=5;
         game.p1.score="40";
         game.p2.score="30";
-        game.play();
+        game.playOneBall();
         Assertions.assertTrue(game.p1.setScore==6);
         Assertions.assertTrue(game.p2.setScore==5);
         Assertions.assertTrue(game.p1.score.equals("0"));
         Assertions.assertTrue(game.p2.score.equals("0"));
         do{
-            game.play();
+            game.playOneBall();
         }while(!game.p1.score.equals("0"));
         Assertions.assertTrue(game.p1.setWinned.get(0)==true);
         Assertions.assertTrue(game.p2.setWinned.get(0)==false);
@@ -178,26 +188,39 @@ public class GameTest {
         game.p2.setScore=6;
         game.p1.score="40";
         game.p2.score="30";
-        game.play();
+        game.playOneBall();
         Assertions.assertTrue(game.p1.setScore==7);
         Assertions.assertTrue(game.p2.setScore==6);
         Assertions.assertTrue(game.p1.score.equals("0"));
         Assertions.assertTrue(game.p2.score.equals("0"));
         do{
-            game.play();
+            game.playOneBall();
         }while(!game.p1.score.equals("0"));
         Assertions.assertTrue(game.p1.setWinned.get(0)==true);
         Assertions.assertTrue(game.p2.setWinned.get(0)==false);
         Assertions.assertTrue(game.p1.setScore==8);
         Assertions.assertTrue(game.p2.setScore==6);
     }
-
-    //final test RandomPlay
     @Test
-    public void randomRules_ResultAreDisplayed()
+    public void bothSetScore6OrMoreAndPlayerWithTwoMoreSets_PlayerWins_2()
     {
-        Game game = initializeTest(new RandomPlayerWins());
-        game.playASet();
+        Game game = initializeTest(new PlayerTwoWins());
+        game.p1.setScore=7;
+        game.p2.setScore=6;
+        game.p1.score="30";
+        game.p2.score="40";
+        game.playOneBall();
+        Assertions.assertTrue(game.p1.setScore==7);
+        Assertions.assertTrue(game.p2.setScore==7);
+        Assertions.assertTrue(game.p1.score.equals("0"));
+        Assertions.assertTrue(game.p2.score.equals("0"));
+        do{
+            game.playOneBall();
+        }while(game.p2.setScore !=9);
+        Assertions.assertTrue(game.p1.setWinned.get(0)==false);
+        Assertions.assertTrue(game.p2.setWinned.get(0)==true);
+        Assertions.assertTrue(game.p1.setScore==7);
+        Assertions.assertTrue(game.p2.setScore==9);
     }
 
 }

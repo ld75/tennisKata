@@ -2,7 +2,7 @@ package tennis.winnerRules;
 
 import tennis.Game;
 
-public class payerTwoWins extends AbstractRule {
+public class PlayerTwoWins extends AbstractRule {
 
 
     @Override

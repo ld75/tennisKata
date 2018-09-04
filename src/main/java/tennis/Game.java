@@ -37,17 +37,10 @@ public class Game {
         scores.add("Winner");
     }
 
-    public void play() {
-        if(p1.score.equals("Winner")|| p2.score.equals("Winner"))
-        {
-            fillHistory();
-            displayer.displayAll();
-        }
-        else {
-            rule.runOnePlay();
+    public void playOneBall() {
+            rule.runOneBall();
             fillHistory();
             displayer.displayLastExchage();
-        }
     }
 
     private void fillHistory() {
@@ -57,7 +50,15 @@ public class Game {
     }
 
     public void playASet() {
-        while(p1.setWinned.size()!=2 && p1.setWinned.size()!=2)
-            play();
+        while(p1.setWinned.size()<2)
+            playOneBall();
+    }
+    public void playAMatch() {
+        while(p1.winTheMatch!=true && p2.winTheMatch!=true) {
+            playOneBall();
+        }
+        System.out.println("-----------RESULTS-----------");
+        displayer.displayAll();
+        System.out.println("RESULTS! winner: is "+(p1.winTheMatch?"p1":"p2"));
     }
 }

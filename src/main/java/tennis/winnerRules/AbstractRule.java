@@ -19,7 +19,7 @@ public abstract class AbstractRule implements IRule {
         this.p1=p1;
     }
 
-    public void runOnePlay() {
+    public void runOneBall() {
         if(noorDeuceOrAdv()) {
             somebodyWins();
         }
@@ -58,11 +58,13 @@ public abstract class AbstractRule implements IRule {
             if (p1.setScore>p2.setScore)
             {
                 p1.setWinned.add(true);
+                p1.winTheMatch=true;
                 p2.setWinned.add(false);
             }
             else {
                 p1.setWinned.add(false);
                 p2.setWinned.add(true);
+                p2.winTheMatch=true;
             }
         }
         else if(p1.setScore==6 && p2.setScore>4){
@@ -71,13 +73,17 @@ public abstract class AbstractRule implements IRule {
         else if(p2.setScore==6 && p1.setScore>4){
             System.out.println("up To 7!");
         }
-        else if(p1.setScore==7){
-            p1.setWinned.add(true);
-            p2.setWinned.add(false);
-        }
-        else if(p2.setScore==7){
-            p1.setWinned.add(false);
-            p2.setWinned.add(true);
+        else if(!isTieBreak()){
+                if(p1.setScore==7){
+                p1.setWinned.add(true);
+                p1.winTheMatch=true;
+                p2.setWinned.add(false);
+            }
+            else if(p2.setScore==7){
+                p1.setWinned.add(false);
+                p2.setWinned.add(true);
+                p2.winTheMatch=true;
+            }
         }
 
     }

@@ -7,4 +7,5 @@ public class Joueur {
     public String score="0";
     public int setScore=0;
     public List<Boolean> setWinned= new ArrayList<Boolean>();
+    public boolean winTheMatch=false;
 }
