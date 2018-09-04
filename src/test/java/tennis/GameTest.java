@@ -11,7 +11,7 @@ public class GameTest {
     @Test
     public void ifPlayRun_ThenOnePlayerWins()
     {
-        Game game = initializeTest(new payerOneWins());
+        Game game = initializeTest(new PlayerOneWins());
         Assertions.assertEquals("0",game.p1.score);
         game.play();
         Assertions.assertEquals("15",game.p1.score);
@@ -37,7 +37,7 @@ public class GameTest {
     @Test
     public void inEachTurn_CanDisplayHistory()
     {
-        Game game = initializeTest(new payerOneWins());
+        Game game = initializeTest(new PlayerOneWins());
         int iteration = 0;
         do
         {
@@ -66,7 +66,7 @@ public class GameTest {
     @Test
     public void gameEnds_DisplayHistory()
     {
-        Game game = initializeTest(new payerOneWins());
+        Game game = initializeTest(new PlayerOneWins());
         game.play();
         game.p1.score="Winner";
         game.play();
@@ -77,7 +77,7 @@ public class GameTest {
     @Test
     public  void bothplayers40_DeuceActivated()
     {
-        Game game = initializeTest(new payerOneWins());
+        Game game = initializeTest(new PlayerOneWins());
         game.p1.score="30";
         game.p2.score="40";
         game.play();
@@ -87,7 +87,7 @@ public class GameTest {
     @Test
     public  void winsDeuce_HasAdvantage()
     {
-        Game game = initializeTest(new payerOneWins());
+        Game game = initializeTest(new PlayerOneWins());
         game.p1.score="DEUCE";
         game.p2.score="DEUCE";
         game.play();
@@ -97,7 +97,7 @@ public class GameTest {
     @Test
     public  void winAdv_Winner()
     {
-        Game game = initializeTest(new payerOneWins());
+        Game game = initializeTest(new PlayerOneWins());
         game.p1.score="ADV";
         game.p2.score="DEUCE";
         game.play();
@@ -107,7 +107,7 @@ public class GameTest {
     @Test
     public void looseAdv_Deuce()
     {
-        Game game = initializeTest(new payerOneWins());
+        Game game = initializeTest(new PlayerOneWins());
         game.p1.score="DEUCE";
         game.p2.score="ADV";
         game.play();
@@ -118,7 +118,7 @@ public class GameTest {
     @Test
     public void gameEnds_setScoreUpdated()
     {
-        Game game = initializeTest(new payerOneWins());
+        Game game = initializeTest(new PlayerOneWins());
         do
         {
             game.play();
@@ -131,7 +131,7 @@ public class GameTest {
     @Test
     public void winnerSetScore6AndOtherPlayerHasSetScoreLessThen4_winnerWinTheSet()
     {
-        Game game = initializeTest(new payerOneWins());
+        Game game = initializeTest(new PlayerOneWins());
         game.p1.setScore=5;
         game.p2.setScore=4;
         game.p1.score="40";
@@ -145,7 +145,7 @@ public class GameTest {
     @Test
     public void winnerSetScore6AndOtherPlayerHasSetScore5_newGameWith7BeingTheLimit()
     {
-        Game game = initializeTest(new payerOneWins());
+        Game game = initializeTest(new PlayerOneWins());
         game.p1.setScore=5;
         game.p2.setScore=5;
         game.p1.score="40";
@@ -167,7 +167,7 @@ public class GameTest {
     @Test
     public void bothSetScore6AndPlayerWithTwoMoreSets_PlayerWins()
     {
-        Game game = initializeTest(new payerOneWins());
+        Game game = initializeTest(new PlayerOneWins());
         game.p1.setScore=6;
         game.p2.setScore=6;
         game.p1.score="40";

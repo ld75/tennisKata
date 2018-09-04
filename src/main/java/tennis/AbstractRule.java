@@ -1,6 +1,10 @@
 package tennis;
 
 public abstract class AbstractRule implements IRule {
+    public static final String WINNER = "Winner";
+    public static final String DEUCE = "DEUCE";
+    public static final String ADV = "ADV";
+    public static final String DEUCE1 = "DEUCE";
     protected Joueur p1;
     protected Joueur p2;
 
