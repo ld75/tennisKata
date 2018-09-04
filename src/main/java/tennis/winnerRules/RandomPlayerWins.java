@@ -8,17 +8,12 @@ import java.security.SecureRandom;
 public class RandomPlayerWins extends AbstractRule {
 
 
+    private Joueur looser;
+    private Joueur winner;
 
     @Override
     protected String somebodyWins() {
-        SecureRandom random = new SecureRandom();
-        int deisgnWinner = random.nextInt(2)+1;
-        Joueur winner = p1;
-        Joueur looser = p2;
-        if (deisgnWinner==2) {
-            winner = p2;
-            looser = p1;
-        }
+        setRandomWinner();
         if (winner.score.equals(DEUCE)){
             if(looser.score.equals(ADV)){
                 looser.score=DEUCE;
@@ -35,6 +30,16 @@ public class RandomPlayerWins extends AbstractRule {
         return "1";
     }
 
+    private void setRandomWinner() {
+        winner = p1;
+        looser = p2;
+        SecureRandom random = new SecureRandom();
+        int deisgnWinner = random.nextInt(2) + 1;
+        if (deisgnWinner == 2) {
+            winner = p2;
+            looser = p1;
+        }
+    }
 
 
 }

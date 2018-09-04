@@ -1,11 +1,11 @@
 package tennis;
 
 import tennis.displayer.Displayer;
+import tennis.displayer.ScoreData;
 import tennis.displayer.TextDisplayer;
 import tennis.winnerRules.IRule;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
 
 public class Game {
@@ -41,18 +41,23 @@ public class Game {
         if(p1.score.equals("Winner")|| p2.score.equals("Winner"))
         {
             fillHistory();
-            displayer.display();
+            displayer.displayAll();
         }
         else {
             rule.runOnePlay();
             fillHistory();
-            displayer.display();
+            displayer.displayLastExchage();
         }
     }
 
     private void fillHistory() {
-        Hashtable<String, String> iteration = new Hashtable<String, String>();
-        iteration.put(p1.score, p2.score);
-        history.scores.add(iteration);
+
+        ScoreData scoredata = new ScoreData(p1.score,p2.score,p1.setScore,p2.setScore);
+        history.scores.add(scoredata);
+    }
+
+    public void playASet() {
+        while(p1.setWinned.size()!=2 && p1.setWinned.size()!=2)
+            play();
     }
 }

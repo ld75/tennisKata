@@ -3,9 +3,11 @@ package tennis;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import tennis.displayer.Displayer;
+import tennis.displayer.ScoreData;
 import tennis.displayer.TextDisplayer;
 import tennis.winnerRules.IRule;
 import tennis.winnerRules.PlayerOneWins;
+import tennis.winnerRules.RandomPlayerWins;
 
 import java.util.Hashtable;
 
@@ -59,13 +61,13 @@ public class GameTest {
         ajouteHistory(history,"15","15");
         ajouteHistory(history,"15","30");
         Displayer displayer = new TextDisplayer(history);
-        displayer.display();
+        displayer.displayAll();
     }
 
     private void ajouteHistory(History history, String s1, String s2) {
         Hashtable<String, String> it1 = new Hashtable<String, String>();
-        it1.put(s1,s2);
-        history.scores.add(it1);
+        new ScoreData("1","2",3,3);
+        history.scores.add(new ScoreData("1","2",3,3));
     }
     @Test
     public void gameEnds_DisplayHistory()
@@ -169,7 +171,7 @@ public class GameTest {
     }
     // Sprint2 UserStory 2:-----------------
     @Test
-    public void bothSetScore6AndPlayerWithTwoMoreSets_PlayerWins()
+    public void bothSetScore6OrMoreAndPlayerWithTwoMoreSets_PlayerWins()
     {
         Game game = initializeTest(new PlayerOneWins());
         game.p1.setScore=6;
@@ -189,4 +191,13 @@ public class GameTest {
         Assertions.assertTrue(game.p1.setScore==8);
         Assertions.assertTrue(game.p2.setScore==6);
     }
+
+    //final test RandomPlay
+    @Test
+    public void randomRules_ResultAreDisplayed()
+    {
+        Game game = initializeTest(new RandomPlayerWins());
+        game.playASet();
+    }
+
 }

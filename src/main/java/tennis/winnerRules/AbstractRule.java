@@ -54,6 +54,7 @@ public abstract class AbstractRule implements IRule {
         }
         else if(isTieBreak() && Math.abs(p1.setScore - p2.setScore) >= 2)
         {
+            System.out.println("tiebreak");
             if (p1.setScore>p2.setScore)
             {
                 p1.setWinned.add(true);
