@@ -19,7 +19,7 @@ public abstract class AbstractRule implements IRule {
         this.p1=p1;
     }
 
-    public void apply() {
+    public void runOnePlay() {
         if(noorDeuceOrAdv()) {
             somebodyWins();
         }

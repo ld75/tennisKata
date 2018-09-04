@@ -44,7 +44,7 @@ public class Game {
             displayer.display();
         }
         else {
-            rule.apply();
+            rule.runOnePlay();
             fillHistory();
             displayer.display();
         }

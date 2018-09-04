@@ -7,5 +7,5 @@ public interface IRule {
 
     void setPlayer1(Joueur p1);
 
-    void apply();
+    void runOnePlay();
 }
